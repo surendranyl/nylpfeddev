@@ -21,24 +21,9 @@ provider "aws" {
 
 resource "random_pet" "sg" {}
 
-data "aws_ami" "ubuntu" {
-  most_recent      = true
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/ubuntu-*-*-amd64-server-*"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-
-  owners = ["275461327397"] # Canonical
-}
 
 resource "aws_instance" "web" {
-  ami                    = data.aws_ami.ubuntu.id
+  ami                    = ami-0767046d1677be5a0
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
 
