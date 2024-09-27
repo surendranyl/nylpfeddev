@@ -22,7 +22,6 @@ provider "aws" {
 resource "random_pet" "sg" {}
 
 data "aws_ami_ids" "ubuntu" {
-  owners = ["099720109477"]
 
   filter {
     name   = "name"
