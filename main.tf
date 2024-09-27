@@ -21,7 +21,7 @@ provider "aws" {
 
 resource "random_pet" "sg" {}
 
-data "aws_ami_ids" "ubuntu" {
+data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
