@@ -28,7 +28,6 @@ data "aws_ami_ids" "ubuntu" {
     name   = "name"
     values = ["ubuntu/images/ubuntu-*-*-amd64-server-*"]
   }
-}
 
   filter {
     name   = "virtualization-type"
