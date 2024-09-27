@@ -21,9 +21,30 @@ provider "aws" {
 
 resource "random_pet" "sg" {}
 
+data "aws_ami" "ubuntu" {
+  executable_users = ["self"]
+  most_recent      = true
+  name_regex       = "^ubuntu-[0-9]{3}"
+  owners           = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["ubuntu-*"]
+  }
+
+  filter {
+    name   = "root-device-type"
+    values = ["ebs"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+}
 
 resource "aws_instance" "web" {
-  ami                    = ami-0767046d1677be5a0
+  ami                    = data.aws_ami.ubuntu.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
 
