@@ -22,10 +22,8 @@ provider "aws" {
 resource "random_pet" "sg" {}
 
 data "aws_ami" "ubuntu" {
-  executable_users = ["self"]
-  most_recent      = true
-  name_regex       = "^ubuntu-[0-9]{3}"
-  owners           = ["self"]
+   most_recent      = true
+  
 
   filter {
     name   = "name"
